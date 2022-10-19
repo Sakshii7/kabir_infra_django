@@ -1,0 +1,83 @@
+
+<html>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+
+}
+
+tr:nth-child(even) {background-color: #FBFBFB;}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:  #00008B;
+
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+li a.active {
+  color: white;
+
+}
+
+</style>
+<body style="font-family: Arial, sans-serif;">
+<ul>
+
+
+  <li><a href="homepage"><h3 style="background-color: #00008B; color: white;"> <i class="fa fa-th-large"></i>  Construction Site Management</h3></a></li>
+
+  <li><a href="homepage">Construction Site Management</a></li>
+  <li><a href="homepage">Reporting</a></li>
+  <li><a href="homepage">Configuration</a></li>
+</ul>
+
+<p>Material Requisition</p>
+
+<a href="add_material_requisition">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Name</th>
+            <th style="background-color: #E7E7E7;">Requisition Date</th>
+            <th style="background-color: #E7E7E7;">Site</th>
+            <th style="background-color: #E7E7E7;">Supervisior</th>
+
+            {% for req in material_requisition %}
+        <tr>
+            <td>{{ req.name }}</td>
+            <td>{{ req.requisition_date }}</td>
+            <td>{{ req.site_id }}</td>
+            <td>{{ req.user_id }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+</body>
+</html>
