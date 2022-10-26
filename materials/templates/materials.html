@@ -77,31 +77,36 @@ li a {
     <li class="dropdown">
         <button class="dropbtn">Configuration</button>
         <div class="dropdown-content">
-             <a href="clients/view_clients">Clients</a>
-            <a href="materials/view_materials">Materials</a>
+            <a href="view_materials">Materials</a>
         </div>
     </li>
 </ul>
 
-<p>Material Requisition</p>
-<a href="add_material_requisition">
+<p>Materials</p>
+<a href="add_materials">
     <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
 </a><br><br>
 
 <div>
     <table style="width:100%;">
         <tr>
+            <th style="background-color: #E7E7E7;">Material Code</th>
             <th style="background-color: #E7E7E7;">Name</th>
-            <th style="background-color: #E7E7E7;">Requisition Date</th>
-            <th style="background-color: #E7E7E7;">Site</th>
-            <th style="background-color: #E7E7E7;">Supervisior</th>
+            <th style="background-color: #E7E7E7;">Alias Name</th>
+            <th style="background-color: #E7E7E7;">Quantity</th>
+            <th style="background-color: #E7E7E7;">Conversion Quantity</th>
+            <th style="background-color: #E7E7E7;">GST Rate(%)</th>
+            <th style="background-color: #E7E7E7;">Allowable Tolerance(%)</th>
 
-            {% for req in material_requisition %}
+            {% for materials in material_list %}
         <tr>
-            <td>{{ req.name }}</td>
-            <td>{{ req.requisition_date }}</td>
-            <td>{{ req.site_id }}</td>
-            <td>{{ req.user_id }}</td>
+            <td>{{ materials.material_code }}</td>
+            <td>{{ materials.name }}</td>
+            <td>{{ materials.alias_name }}</td>
+            <td>{{ materials.quantity }}</td>
+            <td>{{ materials.conversion_quantity }}</td>
+            <td>{{ materials.gst_rate }}</td>
+            <td>{{ materials.allowable_tolerance }}</td>
         </tr>
         {% endfor %}
     </table>

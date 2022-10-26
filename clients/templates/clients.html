@@ -77,14 +77,14 @@ li a {
     <li class="dropdown">
         <button class="dropbtn">Configuration</button>
         <div class="dropdown-content">
-             <a href="clients/view_clients">Clients</a>
-            <a href="materials/view_materials">Materials</a>
+            <a href="view_clients">Clients</a>
+            <a href="view_materials">Materials</a>
         </div>
     </li>
 </ul>
 
-<p>Material Requisition</p>
-<a href="add_material_requisition">
+<p>Clients</p>
+<a href="add_clients">
     <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
 </a><br><br>
 
@@ -92,16 +92,21 @@ li a {
     <table style="width:100%;">
         <tr>
             <th style="background-color: #E7E7E7;">Name</th>
-            <th style="background-color: #E7E7E7;">Requisition Date</th>
-            <th style="background-color: #E7E7E7;">Site</th>
-            <th style="background-color: #E7E7E7;">Supervisior</th>
+            <th style="background-color: #E7E7E7;">Mobile</th>
+            <th style="background-color: #E7E7E7;">City</th>
+            <th style="background-color: #E7E7E7;">State</th>
+            <th style="background-color: #E7E7E7;">Pincode</th>
+            <th style="background-color: #E7E7E7;">Country</th>
 
-            {% for req in material_requisition %}
+            {% for clients in client_list %}
         <tr>
-            <td>{{ req.name }}</td>
-            <td>{{ req.requisition_date }}</td>
-            <td>{{ req.site_id }}</td>
-            <td>{{ req.user_id }}</td>
+            <td>{{ clients.name }}</td>
+            <td>{{ clients.mobile }}</td>
+            <td>{{ clients.city }}</td>
+            <td>{{ clients.state }}</td>
+            <td>{{ clients.pincode }}</td>
+            <td>{{ clients.country }}</td>
+
         </tr>
         {% endfor %}
     </table>

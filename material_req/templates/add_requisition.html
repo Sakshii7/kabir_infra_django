@@ -34,45 +34,35 @@ li a {
   color: white;
 }
 
+
+
 </style>
 <body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
 <div style="background-color: white">
-<ul>
-  <li><a href="homepage"><h3 style="background-color: #00008B; color: white;"> <i class="fa fa-th-large"></i>  Construction Site Management</h3></a></li>
-
-  <li><a href="homepage">Construction Site Management</a></li>
-  <li><a href="homepage">Reporting</a></li>
-  <li><a href="homepage">Configuration</a></li>
-</ul>
-    <p>Material Requisition/ New</p>
-        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-        <input type="reset" style="padding: 5px;" value="Discard"/><br><br>
-</div>
-
-  <div style="background-color: white; border-style: ridge; padding:10px;">
-    <button style="background-color: #00008B; color: white; padding: 7px;">Request For PO</button>
-</div>
-<div style="background-color: white; margin: 50px; padding: 10px" >
-    <form action="add_material_requisition" method="POST">
+    <ul>
+        <li><a href="/"><h3 style="background-color: #00008B; color: white;"><i class="fa fa-th-large"></i> Construction
+            Site Management</h3></a></li>
+        <li><a href="/">Construction Site Management</a></li>
+        <li><a href="/">Reporting</a></li>
+        <li><a href="/">Configuration</a></li>
+    </ul>
+     <form action="add_material_requisition" method="POST">
         {% csrf_token %}
-        <div>
-            {% for message1 in messages %}
-            <p style="color:red"><b>{{message1}} </b></p>
-            {% endfor %}
-        </div>
+    <p><a href="/" style="color: #000080;">Material Requisition</a> / New</p>
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+        <input type="reset" style="padding: 5px;" value="Discard"/><br><br>
 
-        <h3>RQN Reference</h3>
-        <input type="text" name="name" required/><br>
+<div style="background-color: white; margin: 50px; padding: 10px">
+
+
+        <label><b>RQN Reference</b></label>
+        <input type="text" name="name" required/><br><br>
         <label style="padding: 10px;"><b>Site</b></label>
-        <input style="background-color: #B0C4DE;" type="text" name="site_id" required/><br>
-        <label>Supervisior</label>
-        <input type="text" name="user_id" required/><br>
+        <input type="text" name="site_id" required/><br><br>
+        <label><b>Supervisior</b></label>
+        <input type="text" name="user_id" required/><br><br>
 
     </form>
 </div>
-
-</div>
 </body>
-
-
 </html>
