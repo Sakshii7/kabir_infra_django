@@ -12,11 +12,11 @@ from reportlab.pdfgen import canvas
 
 # Create your views here.
 
-def materials(request):
-    material_requisition = MaterialReq.objects.all()
+def material_requisition(request):
+    material_req = MaterialReq.objects.all()
     template = loader.get_template('requisition.html')
     context = {
-        'material_requisition': material_requisition
+        'material_req': material_req
     }
     return HttpResponse(template.render(context, request))
 
@@ -28,10 +28,19 @@ def add_material_requisition(request):
         user_id = request.POST['user_id']
         d = datetime.now().date()
         requisition_date = d
-        material_requisition = MaterialReq(name=name, site_id=site_id, user_id=user_id, requisition_date=requisition_date)
-        material_requisition.save()
+        material_req = MaterialReq(name=name, site_id=site_id, user_id=user_id, requisition_date=requisition_date)
+        material_req.save()
         return redirect('/')
     return render(request, 'add_requisition.html')
+
+
+# def view_material_req(request, id):
+#     material_req = MaterialReq.objects.all(id=id)
+#     template = loader.get_template('view_requisition.html')
+#     context = {
+#         'material_req': material_req
+#     }
+#     return HttpResponse(template.render(context, request))
 
 
 # def pdf_view(request):

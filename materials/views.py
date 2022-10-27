@@ -6,7 +6,7 @@ from .models import *
 
 
 # Create your views here.
-def view_materials(request):
+def materials(request):
     material_list = Materials.objects.all()
     template = loader.get_template('materials.html')
     context = {
@@ -24,9 +24,9 @@ def add_materials(request):
         conversion_quantity = request.POST['conversion_quantity']
         gst_rate = request.POST['gst_rate']
         allowable_tolerance = request.POST['allowable_tolerance']
-        materials = Materials(material_code=material_code, name=name, alias_name=alias_name,
-                              quantity=quantity, conversion_quantity=conversion_quantity, gst_rate=gst_rate,
-                              allowable_tolerance=allowable_tolerance)
-        materials.save()
-        return redirect('/materials/view_materials')
+        all_materials = Materials(material_code=material_code, name=name, alias_name=alias_name,
+                                  quantity=quantity, conversion_quantity=conversion_quantity, gst_rate=gst_rate,
+                                  allowable_tolerance=allowable_tolerance)
+        all_materials.save()
+        return redirect('/view_materials')
     return render(request, 'add_materials.html')

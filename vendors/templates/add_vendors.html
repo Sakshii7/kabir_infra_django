@@ -1,0 +1,136 @@
+<html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #DDD;
+
+}
+tr:nth-child(even) {background-color: #FBFBFB;}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color:  #00008B;
+
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #666;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  color: white;
+}
+
+
+.dropbtn {
+  background-color: #00008B;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 50px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #00008B;}
+
+
+
+
+</style>
+<body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
+<div style="background-color: white">
+    <ul>
+        <li><a href="/"><h3 style="background-color: #00008B; color: white;"><i class="fa fa-th-large"></i> Construction
+            Site Management</h3></a></li>
+        <li><a href="/">Construction Site Management</a></li>
+        <li><a href="/">Reporting</a></li>
+        <li class="dropdown">
+            <button class="dropbtn">Configuration</button>
+            <div class="dropdown-content">
+            <a href="clients">Clients</a>
+            <a href="materials">Materials</a>
+        </div>
+        </li>
+    </ul>
+    <form action="add_vendors" method="POST">
+        {% csrf_token %}
+        <p><a href="vendors" style="color: #000080;">Vendors</a> / New</p>
+
+        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+        <input type="reset" style="padding: 5px;" value="Discard"/><br><br>
+        <div style="background-color: white; margin: 50px; padding: 10px">
+
+
+            <label style="padding: 10px;"><b>Vendor Code</b></label>
+            <input type="text" name="vendor_code" required/><br><br>
+            <label style="padding: 10px;"><b>Trade Name</b></label>
+            <input type="text" name="trade_name" required/><br><br>
+            <label style="padding: 10px;"><b>Vendor Name</b></label>
+            <input type="text" name="vendor_name" required/><br><br>
+            <label><b>Street</b></label>
+            <input type="text" name="street" required/><br><br>
+            <label><b>Street2</b></label>
+            <input type="text" name="street2" required/><br><br>
+            <label><b>City</b></label>
+            <input type="text" name="city" required/><br><br>
+            <label><b>State</b></label>
+            <input type="text" name="state" required/><br><br>
+            <label><b>Pincode</b></label>
+            <input type="text" name="pincode" required/><br><br>
+            <label><b>Country</b></label>
+            <input type="text" name="country" required/><br><br>
+            <label><b>Phone</b></label>
+            <input type="text" name="phone" required/><br><br>
+            <label><b>Mobile</b></label>
+            <input type="text" name="mobile" required/><br><br>
+            <label><b>Email</b></label>
+            <input type="text" name="email" required/><br><br>
+            <label><b>Vendor Type</b></label>
+            <input type="text" name="vendor_type" required/><br><br>
+            <label><b>Contact Person</b></label>
+            <input type="text" name="contact_person" required/><br><br>
+            <label><b>GSTIN</b></label>
+            <input type="text" name="gstin"/><br><br>
+            <label><b>PAN</b></label>
+            <input type="text" name="pan_no"/><br><br>
+            <label><b>Credit Days</b></label>
+            <input type="text" name="credit_days" required/><br><br>
+            <label><b>Credit Amount</b></label>
+            <input type="text" name="credit_amount" required/><br><br>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

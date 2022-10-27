@@ -78,13 +78,13 @@ li a {
         <li class="dropdown">
             <button class="dropbtn">Configuration</button>
             <div class="dropdown-content">
-                <a href="view_materials">Materials</a>
+                <a href="materials">Materials</a>
             </div>
         </li>
     </ul>
     <form action="add_materials" method="POST">
         {% csrf_token %}
-        <p><a href="view_materials" style="color: #000080;">Materials</a> / New</p>
+        <p><a href="materials" style="color: #000080;">Materials</a> / New</p>
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" style="padding: 5px;" value="Discard"/><br><br>

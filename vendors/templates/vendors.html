@@ -1,0 +1,40 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Vendors</p>
+<a href="add_vendors">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Vendor Code</th>
+            <th style="background-color: #E7E7E7;">Trade Name</th>
+            <th style="background-color: #E7E7E7;">Vendor Name</th>
+            <th style="background-color: #E7E7E7;">Vendor Type</th>
+            <th style="background-color: #E7E7E7;">Mobile</th>
+            <th style="background-color: #E7E7E7;">City</th>
+            <th style="background-color: #E7E7E7;">State</th>
+            <th style="background-color: #E7E7E7;">Pincode</th>
+            <th style="background-color: #E7E7E7;">Country</th>
+            <th style="background-color: #E7E7E7;">Credit Days</th>
+            <th style="background-color: #E7E7E7;">Credit Amount</th>
+
+            {% for vendors in vendor_list %}
+        <tr>
+            <td>{{ vendors.vendor_code }}</td>
+            <td>{{ vendors.trade_name }}</td>
+            <td>{{ vendors.vendor_name }}</td>
+            <td>{{ vendors.vendor_type }}</td>
+            <td>{{ vendors.mobile }}</td>
+            <td>{{ vendors.city }}</td>
+            <td>{{ vendors.state }}</td>
+            <td>{{ vendors.pincode }}</td>
+            <td>{{ vendors.country }}</td>
+            <td>{{ vendors.credit_days }}</td>
+            <td>{{ vendors.credit_amount }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

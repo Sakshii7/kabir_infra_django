@@ -72,18 +72,26 @@ li a {
 <ul>
     <li><a href="/"><h3 style="background-color: #00008B; color: white;"><i class="fa fa-th-large"></i>
         Construction Site Management</h3></a></li>
-    <li><a href="/">Construction Site Management</a></li>
+    <li class="dropdown">
+        <button class="dropbtn">Construction Site Management</button>
+        <div class="dropdown-content">
+            <a href="/">Material Requisition</a>
+        </div>
+    </li>
     <li><a href="/">Reporting</a></li>
     <li class="dropdown">
         <button class="dropbtn">Configuration</button>
         <div class="dropdown-content">
-             <a href="clients/view_clients">Clients</a>
-            <a href="materials/view_materials">Materials</a>
+             <a href="clients">Clients</a>
+            <a href="materials">Materials</a>
+            <a href="vendors">Vendors</a>
         </div>
     </li>
 </ul>
+{% block content %}
 
 <p>Material Requisition</p>
+<p><a href="view_material_req"></a></p>
 <a href="add_material_requisition">
     <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
 </a><br><br>
@@ -91,13 +99,16 @@ li a {
 <div>
     <table style="width:100%;">
         <tr>
+<!--            <th style="background-color: #E7E7E7;">Id</th>-->
             <th style="background-color: #E7E7E7;">Name</th>
             <th style="background-color: #E7E7E7;">Requisition Date</th>
             <th style="background-color: #E7E7E7;">Site</th>
             <th style="background-color: #E7E7E7;">Supervisior</th>
 
-            {% for req in material_requisition %}
+            {% for req in material_req %}
         <tr>
+<!--        <td><a href="view_material_req/{{ req.id }}">{{ req.id }}</a></td>-->
+<!--            <td>{{ req.id }}</td>-->
             <td>{{ req.name }}</td>
             <td>{{ req.requisition_date }}</td>
             <td>{{ req.site_id }}</td>
@@ -105,6 +116,7 @@ li a {
         </tr>
         {% endfor %}
     </table>
+    {% endblock %}
 </div>
 </body>
 </html>

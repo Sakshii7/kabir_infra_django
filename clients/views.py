@@ -6,7 +6,7 @@ from django.template import loader
 from .models import *
 
 
-def view_clients(request):
+def clients(request):
     client_list = Clients.objects.all()
     template = loader.get_template('clients.html')
     context = {
@@ -27,8 +27,8 @@ def add_clients(request):
         phone = request.POST['phone']
         mobile = request.POST['mobile']
         email = request.POST['email']
-        clients = Clients(name=name, street=street, street2=street2, city=city, country=country, state=state,
-                          pincode=pincode, phone=phone, mobile=mobile, email=email)
-        clients.save()
-        return redirect('/clients/view_clients')
+        all_clients = Clients(name=name, street=street, street2=street2, city=city, country=country, state=state,
+                              pincode=pincode, phone=phone, mobile=mobile, email=email)
+        all_clients.save()
+        return redirect('/clients')
     return render(request, 'add_clients.html')
