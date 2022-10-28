@@ -34,13 +34,13 @@ def add_material_requisition(request):
     return render(request, 'add_requisition.html')
 
 
-# def view_material_req(request, id):
-#     material_req = MaterialReq.objects.all(id=id)
-#     template = loader.get_template('view_requisition.html')
-#     context = {
-#         'material_req': material_req
-#     }
-#     return HttpResponse(template.render(context, request))
+def view_material_req(request, id):
+    material_req = MaterialReq.objects.all(id=id)
+    template = loader.get_template('view_requisition.html')
+    context = {
+        'material_req': material_req
+    }
+    return HttpResponse(template.render(context, request))
 
 
 # def pdf_view(request):
