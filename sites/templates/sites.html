@@ -1,0 +1,36 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Sites</p>
+<a href="add_sites">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Site No.</th>
+            <th style="background-color: #E7E7E7;">Site Description</th>
+            <th style="background-color: #E7E7E7;">Alias Name</th>
+            <th style="background-color: #E7E7E7;">Client</th>
+            <th style="background-color: #E7E7E7;">City</th>
+            <th style="background-color: #E7E7E7;">State</th>
+            <th style="background-color: #E7E7E7;">Pincode</th>
+            <th style="background-color: #E7E7E7;">Country</th>
+            <th style="background-color: #E7E7E7;">Company</th>
+
+            {% for sites in site_list %}
+        <tr>
+            <td>{{ sites.site_no }}</td>
+            <td>{{ sites.site_desc }}</td>
+            <td>{{ sites.alias_name }}</td>
+            <td>{{ sites.client_id }}</td>
+            <td>{{ sites.city }}</td>
+            <td>{{ sites.state }}</td>
+            <td>{{ sites.pincode }}</td>
+            <td>{{ sites.country }}</td>
+            <td>{{ sites.company }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -35,8 +35,6 @@ li a {
 }
 
 
-
-
 </style>
 <body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
 <div style="background-color: white">
@@ -47,23 +45,23 @@ li a {
         <li><a href="/">Reporting</a></li>
         <li><a href="/">Configuration</a></li>
     </ul>
-    <form action="view_material_req/{{material_req.id}}" method="POST">
+    {% block content %}
+    <form action="update_record/{{material_req.id}}" method="POST">
         {% csrf_token %}
-        <p><a href="/" style="color: #000080;">Material Requisition</a> / New</p>
+        <p onclick="window.location.href='/'" class="clickable ">Material Requisition / {{material_req.name }}</p>
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-        <input type="reset" style="padding: 5px;" value="Discard"/><br><br>
+        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
 
         <div style="background-color: white; margin: 50px; padding: 10px">
-
-
             <label><b>RQN Reference</b></label>
-            <input type="text" name="name" required/><br><br>
+            <input type="text" name="name" value="{{material_req.name}}"/><br><br>
             <label style="padding: 10px;"><b>Site</b></label>
-            <input type="text" name="site_id" required/><br><br>
+            <input type="text" name="site_id" value="{{material_req.site_id}}"/><br><br>
             <label><b>Supervisior</b></label>
-            <input type="text" name="user_id" required/><br><br>
+            <input type="text" name="user_id" value="{{material_req.user_id}}"/><br><br>
         </div>
     </form>
 </div>
+{% endblock %}
 </body>
 </html>

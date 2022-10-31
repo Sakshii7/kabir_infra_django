@@ -1,17 +1,22 @@
 {% extends "add_requisition.html" %}
 {% block content %}
 
-    <form action="add_clients" method="POST">
+    <form action="add_sites" method="POST">
         {% csrf_token %}
-        <p><a href="clients" style="color: #000080;">Clients</a> / New</p>
+        <p><a href="sites" style="color: #000080;">Sites</a> / New</p>
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
 
         <div style="background-color: white; margin: 50px; padding: 10px">
 
-            <label style="padding: 10px;"><b>Name</b></label>
-            <input type="text" name="name" required/><br><br>
+
+            <label style="padding: 10px;"><b>Site No.</b></label>
+            <input type="text" name="site_no" required/><br><br>
+            <label style="padding: 10px;"><b>Site Description</b></label>
+            <input type="text" name="site_desc" required/><br><br>
+            <label style="padding: 10px;"><b>Alias Name</b></label>
+            <input type="text" name="alias_name" required/><br><br>
             <label><b>Street</b></label>
             <input type="text" name="street" required/><br><br>
             <label><b>Street2</b></label>
@@ -24,14 +29,13 @@
             <input type="text" name="pincode" required/><br><br>
             <label><b>Country</b></label>
             <input type="text" name="country" required/><br><br>
-            <label><b>Phone</b></label>
-            <input type="text" name="phone" required/><br><br>
-            <label><b>Mobile</b></label>
-            <input type="text" name="mobile" required/><br><br>
-            <label><b>Email</b></label>
-            <input type="text" name="email" required/><br><br>
-
+            <label><b>Client</b></label>
+            <select name="client_id">
+                <option name="client_id">--------</option>
+                <option name="client_id">{{client_list.id}}</option>
+            </select><br><br>
+            <label><b>Company</b></label>
+            <input type="text" name="company" required/><br><br>
         </div>
     </form>
 {% endblock %}
-

@@ -1,0 +1,31 @@
+{% extends "view_requisition.html" %}
+{% block content %}
+
+    <form action="update_materials/{{all_materials.id}}" method="POST">
+        {% csrf_token %}
+        <p onclick="window.location.href='/'" class="clickable ">Materials / {{material_req.name }}</p>
+
+        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
+
+        <div style="background-color: white; margin: 50px; padding: 10px">
+
+
+            <label><b>Material Code</b></label>
+            <input type="text" name="material_code" required/><br><br>
+            <label style="padding: 10px;"><b>Name</b></label>
+            <input type="text" name="name" value="{{all_materials.name}}"required/><br><br>
+            <label><b>Alias Name</b></label>
+            <input type="text" name="alias_name" value="{{all_materials.name}}" required/><br><br>
+            <label><b>Quantity</b></label>
+            <input  type="text" name="quantity" value="{{all_materials.name}}" required/><br><br>
+            <label><b>Conversion Quantity</b></label>
+            <input  type="text" name="conversion_quantity" value="{{all_materials.name}}" required/><br><br>
+            <label><b>GST Rate(%)</b></label>
+            <input type="text" name="gst_rate" value="{{all_materials.name}}" required/><br><br>
+            <label><b>Allowable Tolerance(%)</b></label>
+            <input value="{{all_materials.name}}" type="text" name="allowable_tolerance" required/><br><br>
+
+        </div>
+    </form>
+{% endblock %}

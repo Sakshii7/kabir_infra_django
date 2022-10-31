@@ -17,3 +17,6 @@ class Sites(models.Model):
     country = models.CharField(max_length=20)
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)
     company = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.site_no

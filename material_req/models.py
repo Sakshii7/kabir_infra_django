@@ -8,3 +8,6 @@ class MaterialReq(models.Model):
     site_id = models.CharField(max_length=10)
     user_id = models.CharField(max_length=10)
     requisition_date = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ['name']

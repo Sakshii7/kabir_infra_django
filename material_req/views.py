@@ -1,13 +1,10 @@
-import io
+from datetime import datetime
 
-from django.http import HttpResponse, HttpResponseRedirect, FileResponse
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.template import loader
-from django.urls import reverse
 
 from .models import *
-from datetime import datetime
-from reportlab.pdfgen import canvas
 
 
 # Create your views here.
@@ -34,14 +31,27 @@ def add_material_requisition(request):
     return render(request, 'add_requisition.html')
 
 
-def view_material_req(request, id):
-    material_req = MaterialReq.objects.all(id=id)
+def view_material_req(request, req_id):
+    material_req = MaterialReq.objects.get(id=req_id)
     template = loader.get_template('view_requisition.html')
     context = {
-        'material_req': material_req
+        'material_req': material_req,
     }
     return HttpResponse(template.render(context, request))
 
+
+def update_material_req(request, req_id):
+    if request.method == 'POST':
+        name = request.POST['name']
+        site_id = request.POST['site_id']
+        user_id = request.POST['user_id']
+        requisition_id = MaterialReq.objects.get(id=req_id)
+        requisition_id.name = name
+        requisition_id.site_id = site_id
+        requisition_id.user_id = user_id
+        requisition_id.save()
+        return redirect('/')
+    return render(request, 'add_requisition.html')
 
 # def pdf_view(request):
 #     response = HttpResponse(content_type='application/pdf')

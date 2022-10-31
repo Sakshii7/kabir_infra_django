@@ -17,7 +17,7 @@
             <th style="background-color: #E7E7E7;">Allowable Tolerance(%)</th>
 
             {% for materials in material_list %}
-        <tr>
+        <tr class="clickable " onclick="window.location.href='view_materials/{{ materials.id }}'">
             <td>{{ materials.material_code }}</td>
             <td>{{ materials.name }}</td>
             <td>{{ materials.alias_name }}</td>

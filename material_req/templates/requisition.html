@@ -99,23 +99,23 @@ li a {
 
 <div>
     <table style="width:100%;">
+         <tbody>
         <tr>
-<!--            <th style="background-color: #E7E7E7;">Id</th>-->
             <th style="background-color: #E7E7E7;">Name</th>
             <th style="background-color: #E7E7E7;">Requisition Date</th>
             <th style="background-color: #E7E7E7;">Site</th>
             <th style="background-color: #E7E7E7;">Supervisior</th>
 
             {% for req in material_req %}
-        <tr>
-<!--        <td><a href="view_material_req/{{ req.id }}">{{ req.id }}</a></td>-->
-<!--            <td>{{ req.id }}</td>-->
+
+        <tr class="clickable " onclick="window.location.href='view_material_req/{{ req.id }}'">
             <td>{{ req.name }}</td>
             <td>{{ req.requisition_date }}</td>
             <td>{{ req.site_id }}</td>
             <td>{{ req.user_id }}</td>
         </tr>
         {% endfor %}
+        </tbody>
     </table>
     {% endblock %}
 </div>
