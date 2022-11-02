@@ -16,7 +16,7 @@ def sites(request):
 
 
 def add_sites(request):
-    client_list = Clients.objects.get()
+    client_list = Clients.objects.all()
     context = {
         'client_list': client_list
     }

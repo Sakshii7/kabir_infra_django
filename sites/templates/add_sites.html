@@ -10,12 +10,11 @@
 
         <div style="background-color: white; margin: 50px; padding: 10px">
 
-
             <label style="padding: 10px;"><b>Site No.</b></label>
             <input type="text" name="site_no" required/><br><br>
-            <label style="padding: 10px;"><b>Site Description</b></label>
+            <label><b>Site Description</b></label>
             <input type="text" name="site_desc" required/><br><br>
-            <label style="padding: 10px;"><b>Alias Name</b></label>
+            <label><b>Alias Name</b></label>
             <input type="text" name="alias_name" required/><br><br>
             <label><b>Street</b></label>
             <input type="text" name="street" required/><br><br>
@@ -32,7 +31,9 @@
             <label><b>Client</b></label>
             <select name="client_id">
                 <option name="client_id">--------</option>
-                <option name="client_id">{{client_list.id}}</option>
+                {% for clients in client_list %}
+                <option name="client_id">{{clients.id}}</option>
+                 {% endfor %}
             </select><br><br>
             <label><b>Company</b></label>
             <input type="text" name="company" required/><br><br>
