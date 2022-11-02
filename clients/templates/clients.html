@@ -15,14 +15,14 @@
             <th style="background-color: #E7E7E7;">Pincode</th>
             <th style="background-color: #E7E7E7;">Country</th>
 
-            {% for clients in client_list %}
-        <tr>
-            <td>{{ clients.name }}</td>
-            <td>{{ clients.mobile }}</td>
-            <td>{{ clients.city }}</td>
-            <td>{{ clients.state }}</td>
-            <td>{{ clients.pincode }}</td>
-            <td>{{ clients.country }}</td>
+            {% for client in client_list %}
+        <tr class="clickable " onclick="window.location.href='view_clients/{{ client.id }}'">
+            <td>{{ client.name }}</td>
+            <td>{{ client.mobile }}</td>
+            <td>{{ client.city }}</td>
+            <td>{{ client.state }}</td>
+            <td>{{ client.pincode }}</td>
+            <td>{{ client.country }}</td>
         </tr>
         {% endfor %}
     </table>

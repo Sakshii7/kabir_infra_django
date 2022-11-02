@@ -18,17 +18,17 @@
             <th style="background-color: #E7E7E7;">Country</th>
             <th style="background-color: #E7E7E7;">Company</th>
 
-            {% for sites in site_list %}
-        <tr>
-            <td>{{ sites.site_no }}</td>
-            <td>{{ sites.site_desc }}</td>
-            <td>{{ sites.alias_name }}</td>
-            <td>{{ sites.client_id }}</td>
-            <td>{{ sites.city }}</td>
-            <td>{{ sites.state }}</td>
-            <td>{{ sites.pincode }}</td>
-            <td>{{ sites.country }}</td>
-            <td>{{ sites.company }}</td>
+            {% for site in site_list %}
+        <tr class="clickable " onclick="window.location.href='view_sites/{{ site.id }}'">
+            <td>{{ site.site_no }}</td>
+            <td>{{ site.site_desc }}</td>
+            <td>{{ site.alias_name }}</td>
+            <td>{{ site.client.name }}</td>
+            <td>{{ site.city }}</td>
+            <td>{{ site.state }}</td>
+            <td>{{ site.pincode }}</td>
+            <td>{{ site.country }}</td>
+            <td>{{ site.company }}</td>
         </tr>
         {% endfor %}
     </table>

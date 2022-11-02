@@ -7,9 +7,7 @@
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
-
         <div style="background-color: white; margin: 50px; padding: 10px">
-
             <label style="padding: 10px;"><b>Site No.</b></label>
             <input type="text" name="site_no" required/><br><br>
             <label><b>Site Description</b></label>
@@ -17,22 +15,22 @@
             <label><b>Alias Name</b></label>
             <input type="text" name="alias_name" required/><br><br>
             <label><b>Street</b></label>
-            <input type="text" name="street" required/><br><br>
+            <input type="text" name="street"/><br><br>
             <label><b>Street2</b></label>
-            <input type="text" name="street2" required/><br><br>
+            <input type="text" name="street2"/><br><br>
             <label><b>City</b></label>
             <input type="text" name="city" required/><br><br>
             <label><b>State</b></label>
             <input type="text" name="state" required/><br><br>
             <label><b>Pincode</b></label>
-            <input type="text" name="pincode" required/><br><br>
+            <input type="text" name="pincode"/><br><br>
             <label><b>Country</b></label>
             <input type="text" name="country" required/><br><br>
             <label><b>Client</b></label>
             <select name="client_id">
-                <option name="client_id">--------</option>
-                {% for clients in client_list %}
-                <option name="client_id">{{clients.id}}</option>
+                <option value="client_id"></option>
+                {% for client in client_list %}
+                <option value={{client.id}}>{{client.name}}</option>
                  {% endfor %}
             </select><br><br>
             <label><b>Company</b></label>

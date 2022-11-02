@@ -3,13 +3,12 @@
 
     <form action="update_materials/{{all_materials.id}}" method="POST">
         {% csrf_token %}
-        <p onclick="window.location.href='/'" class="clickable ">Materials / {{all_materials.name }}</p>
+        <p onclick="window.location.href='/materials'" class="clickable ">Materials / {{all_materials.name }}</p>
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/materials'"/><br><br>
 
         <div style="background-color: white; margin: 50px; padding: 10px">
-
 
             <label><b>Material Code</b></label>
             <input type="text" name="material_code" value="{{all_materials.material_code}}" required/><br><br>

@@ -59,5 +59,5 @@ def update_materials(request, material_id):
         mat_id.gst_rate = gst_rate
         mat_id.allowable_tolerance = allowable_tolerance
         mat_id.save()
-        return redirect('/view_materials')
-    return render(request, 'add_materials.html')
+        return redirect('/materials')
+    return render(request, 'view_materials.html')
