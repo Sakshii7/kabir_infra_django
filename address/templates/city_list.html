@@ -1,0 +1,25 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>City</p>
+<a href="add_city">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">City Name</th>
+            <th style="background-color: #E7E7E7;">Zipcode</th>
+            <th style="background-color: #E7E7E7;">Country</th>
+            <th style="background-color: #E7E7E7;">State</th>
+            {% for city in city_list %}
+        <tr>
+            <td>{{ city.name }}</td>
+            <td>{{ city.zipcode }}</td>
+            <td>{{ city.country.name }}</td>
+            <td>{{ city.state.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

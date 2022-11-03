@@ -1,0 +1,23 @@
+{% extends "add_requisition.html" %}
+{% block content %}
+
+    <form action="add_country" method="POST">
+        {% csrf_token %}
+<!--        <p><a href="country" style="color: #000080;">Country</a> / New</p>-->
+        <p onclick="window.location.href='/country'" class="clickable ">Country/ New</p>
+
+        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/country'"/><br><br>
+
+        <div style="background-color: white; margin: 50px; padding: 10px">
+
+            <label style="padding: 10px;"><b>Name</b></label>
+            <input type="text" name="name" required/><br><br>
+            <label><b>Code</b></label>
+            <input type="text" name="code" /><br><br>
+            <label><b>Phone Code</b></label>
+            <input type="text" name="phone_code" /><br><br>
+        </div>
+    </form>
+{% endblock %}
+

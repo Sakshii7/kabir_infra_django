@@ -1,0 +1,24 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>States</p>
+<a href="add_state">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">State Name</th>
+
+            <th style="background-color: #E7E7E7;">Code</th>
+            <th style="background-color: #E7E7E7;">Country</th>
+            {% for state in state_list %}
+        <tr>
+            <td>{{ state.name }}</td>
+            <td>{{ state.code }}</td>
+            <td>{{ state.country.name }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

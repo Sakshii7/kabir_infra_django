@@ -1,0 +1,24 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Country</p>
+<a href="add_country">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Name</th>
+            <th style="background-color: #E7E7E7;">Code</th>
+            <th style="background-color: #E7E7E7;">Phone Code</th>
+
+            {% for country in country_list %}
+        <tr class="clickable " onclick="window.location.href='view_country/{{ country.id }}'">
+            <td>{{ country.name }}</td>
+            <td>{{ country.code }}</td>
+            <td>{{ country.phone_code }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

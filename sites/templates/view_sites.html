@@ -35,13 +35,13 @@
                 <option value={{client.id}}>{{client.name}}</option>
                  {% endfor %}
             </select><br><br>
-            <label><b>Client</b></label>
-            <select name="client_id">
-<!--                <option value={{all_sites.client_id}}>{{all_sites.client.name}}</option>-->
-                {% for client in client_list %}
-                <option value={{client.id}}>{{client.name}}</option>
-                 {% endfor %}
-            </select><br><br>
+<!--            <label><b>Client</b></label>-->
+<!--            <select name="client_id">-->
+<!--&lt;!&ndash;                <option value={{all_sites.client_id}}>{{all_sites.client.name}}</option>&ndash;&gt;-->
+<!--                {% for client in client_list %}-->
+<!--                <option value={{client.id}}>{{client.name}}</option>-->
+<!--                 {% endfor %}-->
+<!--            </select><br><br>-->
             <label><b>Company</b></label>
             <input type="text" name="company" value="{{all_sites.company}}" required/><br><br>
         </div>

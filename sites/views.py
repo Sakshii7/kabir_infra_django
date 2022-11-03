@@ -34,7 +34,8 @@ def add_sites(request):
         company = request.POST['company']
 
         all_sites = Sites(site_no=site_no, site_desc=site_desc, alias_name=alias_name, street=street, street2=street2,
-                          city=city, country=country, state=state, pincode=pincode, client_id=client_id, company=company)
+                          city=city, country=country, state=state, pincode=pincode, client_id=client_id,
+                          company=company)
         all_sites.save()
         return redirect('/sites')
     return render(request, 'add_sites.html', context)
@@ -51,7 +52,6 @@ def view_sites(request, site_id):
 
 def update_sites(request, site_id):
     client_list = Clients.objects.all()
-    print(client_list)
     context = {
         'client_list': client_list
     }

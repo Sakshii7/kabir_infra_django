@@ -1,0 +1,24 @@
+{% extends "add_requisition.html" %}
+{% block content %}
+
+    <form action="add_state" method="POST">
+        {% csrf_token %}
+        <p onclick="window.location.href='/states'" class="clickable ">State/ New</p>
+
+        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/state'"/><br><br>
+        <div style="background-color: white; margin: 50px; padding: 10px">
+            <label style="padding: 10px;"><b>Name</b></label>
+            <input type="text" name="name" required/><br><br>
+            <label><b>Country</b></label>
+            <select name="country_id">
+                <option disabled="true" selected></option>
+                {% for country in country_list %}
+                <option value={{country.id}}>{{country.name}}</option>
+                 {% endfor %}
+            </select><br><br>
+            <label><b>Code</b></label>
+            <input type="text" name="code" required/><br><br>
+        </div>
+    </form>
+{% endblock %}

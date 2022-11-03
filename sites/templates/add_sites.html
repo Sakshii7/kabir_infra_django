@@ -28,7 +28,7 @@
             <input type="text" name="country" required/><br><br>
             <label><b>Client</b></label>
             <select name="client_id">
-                <option value="client_id"></option>
+                <option disabled="true" selected></option>
                 {% for client in client_list %}
                 <option value={{client.id}}>{{client.name}}</option>
                  {% endfor %}
