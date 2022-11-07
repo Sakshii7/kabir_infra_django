@@ -16,6 +16,10 @@ def clients(request):
 
 
 def add_clients(request):
+    country_list = Country.objects.all()
+    context = {
+        'country_list': country_list,
+    }
     if request.method == 'POST':
         name = request.POST['name']
         street = request.POST['street']
@@ -31,14 +35,28 @@ def add_clients(request):
                               pincode=pincode, phone=phone, mobile=mobile, email=email)
         all_clients.save()
         return redirect('/clients')
-    return render(request, 'add_clients.html')
+    return render(request, 'add_clients.html', context)
+
+
+def load_states(request):
+    country_id = request.GET.get('country')
+    state = State.objects.filter(country_id=country_id).order_by('name')
+    return render(request, 'states_dropdown.html', {'state_list': state})
+
+
+def load_city(request):
+    state_id = request.GET.get('state')
+    city = City.objects.filter(state_id=state_id).order_by('name')
+    return render(request, 'city_dropdown.html', {'city_list': city})
 
 
 def view_clients(request, client_id):
     all_clients = Clients.objects.get(id=client_id)
+    country_list = Country.objects.all()
     template = loader.get_template('view_clients.html')
     context = {
         'all_clients': all_clients,
+        'country_list': country_list
     }
     return HttpResponse(template.render(context, request))
 
@@ -49,7 +67,7 @@ def update_clients(request, client_id):
         street = request.POST['street']
         street2 = request.POST['street2']
         city = request.POST['city']
-        country = request.POST['country']
+        country_id = request.POST['country_id']
         state = request.POST['state']
         pincode = request.POST['pincode']
         phone = request.POST['phone']
@@ -60,7 +78,7 @@ def update_clients(request, client_id):
         get_client_id.street = street
         get_client_id.street2 = street2
         get_client_id.city = city
-        get_client_id.country = country
+        get_client_id.country_id = country_id
         get_client_id.state = state
         get_client_id.pincode = pincode
         get_client_id.phone = phone

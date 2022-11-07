@@ -19,10 +19,10 @@
         <tr class="clickable " onclick="window.location.href='view_clients/{{ client.id }}'">
             <td>{{ client.name }}</td>
             <td>{{ client.mobile }}</td>
-            <td>{{ client.city }}</td>
-            <td>{{ client.state }}</td>
+            <td>{{ client.city.name }}</td>
+            <td>{{ client.state.name }}</td>
             <td>{{ client.pincode }}</td>
-            <td>{{ client.country }}</td>
+            <td>{{ client.country.name }}</td>
         </tr>
         {% endfor %}
     </table>

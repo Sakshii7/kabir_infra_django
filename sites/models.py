@@ -1,5 +1,6 @@
 from django.db import models
 
+from address.models import City, State, Country
 from clients.models import Clients
 
 
@@ -11,10 +12,10 @@ class Sites(models.Model):
     alias_name = models.CharField(max_length=200)
     street = models.CharField(max_length=200)
     street2 = models.CharField(max_length=200)
-    city = models.CharField(max_length=200)
-    state = models.CharField(max_length=200)
+    city = models.ForeignKey(City, on_delete=models.CASCADE)
+    state = models.ForeignKey(State, on_delete=models.CASCADE)
     pincode = models.CharField(max_length=20)
-    country = models.CharField(max_length=20)
+    country = models.ForeignKey(Country, on_delete=models.CASCADE)
     client = models.ForeignKey(Clients, on_delete=models.CASCADE)
     company = models.CharField(max_length=20)
 

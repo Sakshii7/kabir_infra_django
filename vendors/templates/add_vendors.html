@@ -1,51 +1,115 @@
 {% extends "add_requisition.html" %}
 {% block content %}
-    <form action="add_vendors" method="POST">
-        {% csrf_token %}
-        <p><a href="vendors" style="color: #000080;">Vendors</a> / New</p>
+<form action="add_vendors" method="POST" data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
+    {% csrf_token %}
+    <p onclick="window.location.href='/vendors'" class="clickable ">Vendors/ New</p>
 
-        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
-        <div style="background-color: white; margin: 50px; padding: 10px">
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
+    <div style="background-color: white; margin: 50px; padding: 10px">
 
+        <label><b>Vendor Code</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="vendor_code" required/><br><br>
 
-            <label style="padding: 10px;"><b>Vendor Code</b></label>
-            <input type="text" name="vendor_code" required/><br><br>
-            <label style="padding: 10px;"><b>Trade Name</b></label>
-            <input type="text" name="trade_name" required/><br><br>
-            <label style="padding: 10px;"><b>Vendor Name</b></label>
-            <input type="text" name="vendor_name" required/><br><br>
-            <label><b>Street</b></label>
-            <input type="text" name="street" required/><br><br>
-            <label><b>Street2</b></label>
-            <input type="text" name="street2" required/><br><br>
-            <label><b>City</b></label>
-            <input type="text" name="city" required/><br><br>
-            <label><b>State</b></label>
-            <input type="text" name="state" required/><br><br>
-            <label><b>Pincode</b></label>
-            <input type="text" name="pincode" required/><br><br>
-            <label><b>Country</b></label>
-            <input type="text" name="country" required/><br><br>
-            <label><b>Phone</b></label>
-            <input type="text" name="phone" required/><br><br>
-            <label><b>Mobile</b></label>
-            <input type="text" name="mobile" required/><br><br>
-            <label><b>Email</b></label>
-            <input type="text" name="email" required/><br><br>
-            <label><b>Vendor Type</b></label>
-            <input type="text" name="vendor_type" required/><br><br>
-            <label><b>Contact Person</b></label>
-            <input type="text" name="contact_person" required/><br><br>
-            <label><b>GSTIN</b></label>
-            <input type="text" name="gstin"/><br><br>
-            <label><b>PAN</b></label>
-            <input type="text" name="pan_no"/><br><br>
-            <label><b>Credit Days</b></label>
-            <input type="text" name="credit_days" required/><br><br>
-            <label><b>Credit Amount</b></label>
-            <input type="text" name="credit_amount" required/><br><br>
-        </div>
-    </form>
+        <label><b>Trade Name</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="trade_name" required/><br><br>
+
+        <label><b>Vendor Name</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="vendor_name" required/><br><br>
+
+        <label><b>Street</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="street" required/><br><br>
+
+        <label><b>Street2</b></label>
+        <input type="text" name="street2"/><br><br>
+
+        <label><b>Country</b></label>
+        <select style="background-color:#CCCCFF;" id="country" name="country_id">
+            <option style="background-color:white;" disabled="true" selected></option>
+            {% for country in country_list %}
+            <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>State</b></label>
+        <select style="background-color:#CCCCFF;" name="state_id" id="state">
+            <option style="background-color:white;" disabled="true">---select state---</option>
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select style="background-color:#CCCCFF;" name="city_id" id="city">
+            <option style="background-color:white;" disabled="true">---select city---</option>
+        </select><br><br>
+
+<!--        <label><b>City</b></label>-->
+<!--        <input style="background-color:#CCCCFF;" type="text" name="city" required/><br><br>-->
+
+        <label><b>Pincode</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="pincode" required/><br><br>
+
+        <label><b>Phone</b></label>
+        <input type="text" name="phone"/><br><br>
+
+        <label><b>Mobile</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="mobile" required/><br><br>
+
+        <label><b>Email</b></label>
+        <input type="text" name="email"/><br><br>
+
+        <label><b>Vendor Type</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="vendor_type" required/><br><br>
+
+        <label><b>Contact Person</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="contact_person" required/><br><br>
+
+        <label><b>GSTIN</b></label>
+        <input type="text" name="gstin"/><br><br>
+
+        <label><b>PAN</b></label>
+        <input type="text" name="pan_no"/><br><br>
+
+        <label><b>Credit Days</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="credit_days" required/><br><br>
+
+        <label><b>Credit Amount</b></label>
+        <input type="text" name="credit_amount"/><br><br>
+
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");  // get the url of the `load_states` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'country': countryId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_states` view function
+          $("#state").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_states` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+    });
+</script>
 {% endblock %}
 

@@ -1,49 +1,46 @@
 {% extends "view_requisition.html" %}
 {% block content %}
 
-    <form action="update_sites/{{all_sites.id}}" method="POST">
-        {% csrf_token %}
-        <p onclick="window.location.href='/sites'" class="clickable ">Sites / [{{all_sites.site_no }}] {{all_sites.alias_name }}</p>
+<form action="update_sites/{{all_sites.id}}" method="POST">
+    {% csrf_token %}
+    <p onclick="window.location.href='/sites'" class="clickable ">Sites / [{{all_sites.site_no }}]
+        {{all_sites.alias_name }}</p>
 
-        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/sites'"/><br><br>
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/sites'"/><br><br>
 
-        <div style="background-color: white; margin: 50px; padding: 10px">
+    <div style="background-color: white; margin: 50px; padding: 10px">
 
-            <label style="padding: 10px;"><b>Site No.</b></label>
-            <input type="text" name="site_no" value="{{all_sites.site_no}}" required/><br><br>
-            <label><b>Site Description</b></label>
-            <input type="text" name="site_desc" value="{{all_sites.site_desc}}"  required/><br><br>
-            <label><b>Alias Name</b></label>
-            <input type="text" name="alias_name" value="{{all_sites.alias_name}}" required/><br><br>
-            <label><b>Street</b></label>
-            <input type="text" name="street" value="{{all_sites.street}}" /><br><br>
-            <label><b>Street2</b></label>
-            <input type="text" name="street2" value="{{all_sites.street2}}" /><br><br>
-            <label><b>City</b></label>
-            <input type="text" name="city" value="{{all_sites.city}}" required/><br><br>
-            <label><b>State</b></label>
-            <input type="text" name="state" value="{{all_sites.state}}" required/><br><br>
-            <label><b>Pincode</b></label>
-            <input type="text" name="pincode" value="{{all_sites.pincode}}" /><br><br>
-            <label><b>Country</b></label>
-            <input type="text" name="country" value="{{all_sites.country}}" required/><br><br>
-            <label><b>Client</b></label>
-            <select name="client_id">
-                <option value={{all_sites.client_id}}>{{all_sites.client.name}}</option>
-                {% for client in client_list %}
-                <option value={{client.id}}>{{client.name}}</option>
-                 {% endfor %}
-            </select><br><br>
-<!--            <label><b>Client</b></label>-->
-<!--            <select name="client_id">-->
-<!--&lt;!&ndash;                <option value={{all_sites.client_id}}>{{all_sites.client.name}}</option>&ndash;&gt;-->
-<!--                {% for client in client_list %}-->
-<!--                <option value={{client.id}}>{{client.name}}</option>-->
-<!--                 {% endfor %}-->
-<!--            </select><br><br>-->
-            <label><b>Company</b></label>
-            <input type="text" name="company" value="{{all_sites.company}}" required/><br><br>
-        </div>
-    </form>
+        <label style="padding: 10px;"><b>Site No.</b></label>
+        <input type="text" name="site_no" value="{{all_sites.site_no}}" required/><br><br>
+        <label><b>Site Description</b></label>
+        <input type="text" name="site_desc" value="{{all_sites.site_desc}}" required/><br><br>
+        <label><b>Alias Name</b></label>
+        <input type="text" name="alias_name" value="{{all_sites.alias_name}}" required/><br><br>
+        <label><b>Street</b></label>
+        <input type="text" name="street" value="{{all_sites.street}}"/><br><br>
+        <label><b>Street2</b></label>
+        <input type="text" name="street2" value="{{all_sites.street2}}"/><br><br>
+        <label><b>City</b></label>
+        <input type="text" name="city" value="{{all_sites.city}}" required/><br><br>
+        <label><b>State</b></label>
+        <input type="text" name="state" value="{{all_sites.state}}" required/><br><br>
+        <label><b>Pincode</b></label>
+        <input type="text" name="pincode" value="{{all_sites.pincode}}"/><br><br>
+        <label><b>Country</b></label>
+        <input type="text" name="country" value="{{all_sites.country}}" required/><br><br>
+        <label><b>Client</b></label>
+        <select name="client_id">
+            {% for client in client_list %}
+            {% if all_sites.client_id == client.id %}
+            <option value="{{client.id}}" selected>{{client.name}}</option>
+            {% else %}
+            <option value="{{client.id}}">{{client.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+        <label><b>Company</b></label>
+        <input type="text" name="company" value="{{all_sites.company}}" required/><br><br>
+    </div>
+</form>
 {% endblock %}

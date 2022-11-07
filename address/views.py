@@ -1,3 +1,5 @@
+from sre_parse import State
+
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django.template import loader
@@ -73,6 +75,35 @@ def add_state(request):
     return render(request, 'add_state.html', context)
 
 
+def view_state(request, state_id):
+    all_state = State.objects.get(id=state_id)
+    country_list = Country.objects.all()
+    template = loader.get_template('view_state.html')
+    context = {
+        'all_state': all_state,
+        'country_list': country_list
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def update_state(request, state_id):
+    country_list = Country.objects.all()
+    context = {
+        'country_list': country_list
+    }
+    if request.method == 'POST':
+        name = request.POST['name']
+        code = request.POST['code']
+        country_id = request.POST['country_id']
+        get_state_id = State.objects.get(id=state_id)
+        get_state_id.name = name
+        get_state_id.code = code
+        get_state_id.country_id = country_id
+        get_state_id.save()
+        return redirect('/states')
+    return render(request, 'view_state.html', context)
+
+
 def city(request):
     city_list = City.objects.all()
     template = loader.get_template('city_list.html')
@@ -84,11 +115,8 @@ def city(request):
 
 def add_city(request):
     country_list = Country.objects.all()
-    state_list = State.objects.all()
-    # state_list = State.objects.all().filter(country=)
     context = {
         'country_list': country_list,
-        'state_list': state_list
     }
     if request.method == "POST":
         name = request.POST['name']
@@ -99,3 +127,9 @@ def add_city(request):
         all_city.save()
         return redirect('/city')
     return render(request, 'add_city.html', context)
+
+
+def load_states(request):
+    country_id = request.GET.get('country')
+    state = State.objects.filter(country_id=country_id).order_by('name')
+    return render(request, 'states_dropdown.html', {'state_list': state})

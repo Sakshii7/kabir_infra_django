@@ -1,0 +1,5 @@
+<option disabled="true">---select state---</option>
+{% for state in state_list %}
+<option style="background-color:white;" value="{{ state.id }}">{{ state.name }}</option>
+{% endfor %}
+

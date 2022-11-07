@@ -3,7 +3,7 @@
 
     <form action="add_materials" method="POST">
         {% csrf_token %}
-        <p><a href="materials" style="color: #000080;">Materials</a> / New</p>
+        <p onclick="window.location.href='/materials'" class="clickable ">Materials/ New</p>
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
@@ -12,19 +12,19 @@
 
 
             <label><b>Material Code</b></label>
-            <input type="text" name="material_code" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="material_code" required/><br><br>
             <label style="padding: 10px;"><b>Name</b></label>
-            <input type="text" name="name" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
             <label><b>Alias Name</b></label>
-            <input type="text" name="alias_name" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="alias_name" required/><br><br>
             <label><b>Quantity</b></label>
-            <input value="1.0" type="text" name="quantity" required/><br><br>
+            <input value="1.0" type="text" name="quantity" /><br><br>
             <label><b>Conversion Quantity</b></label>
-            <input value="0.0" type="text" name="conversion_quantity" required/><br><br>
+            <input value="0.0" type="text" name="conversion_quantity" /><br><br>
             <label><b>GST Rate(%)</b></label>
-            <input value="0.0" type="text" name="gst_rate" required/><br><br>
+            <input style="background-color:#CCCCFF;" value="0.0" type="text" name="gst_rate" required/><br><br>
             <label><b>Allowable Tolerance(%)</b></label>
-            <input value="0.0" type="text" name="allowable_tolerance" required/><br><br>
+            <input value="0.0" type="text" name="allowable_tolerance" /><br><br>
 
         </div>
     </form>

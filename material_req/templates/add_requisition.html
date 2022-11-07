@@ -69,6 +69,7 @@ li a {
 
 
 
+
 </style>
 <body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
 <div style="background-color: white">
@@ -97,7 +98,7 @@ li a {
     {% block content %}
     <form action="add_material_requisition" method="POST">
         {% csrf_token %}
-        <p><a href="/" style="color: #000080;">Material Requisition</a> / New</p>
+        <p onclick="window.location.href='/'" class="clickable ">Material Requisition/ New</p>
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
 
@@ -105,11 +106,11 @@ li a {
 
 
             <label><b>RQN Reference</b></label>
-            <input type="text" name="name" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
             <label style="padding: 10px;"><b>Site</b></label>
-            <input type="text" name="site_id" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="site_id" required/><br><br>
             <label><b>Supervisior</b></label>
-            <input type="text" name="user_id" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="user_id" required/><br><br>
         </div>
     </form>
 </div>

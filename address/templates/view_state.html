@@ -1,0 +1,29 @@
+{% extends "view_requisition.html" %}
+{% block content %}
+
+<form action="update_state/{{all_state.id}}" method="POST">
+    {% csrf_token %}
+    <p onclick="window.location.href='/states'" class="clickable ">State / {{all_state.name }}</p>
+
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/state'"/><br><br>
+
+    <div style="background-color: white; margin: 50px; padding: 10px">
+
+        <label><b>Name</b></label>
+        <input type="text" name="name" value="{{all_state.name}}" required/><br><br>
+        <label><b>Country</b></label>
+        <select name="country_id">
+            {% for country in country_list %}
+            {% if all_state.country_id == country.id %}
+            <option value="{{country.id}}" selected>{{country.name}}</option>
+            {% else %}
+            <option value="{{country.id}}">{{country.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+        <label><b>Code</b></label>
+        <input type="text" name="code" value="{{all_state.code}}"/><br><br>
+    </div>
+</form>
+{% endblock %}

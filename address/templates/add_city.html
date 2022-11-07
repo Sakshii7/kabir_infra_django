@@ -1,7 +1,7 @@
 {% extends "add_requisition.html" %}
 {% block content %}
 
-<form action="add_city" method="POST">
+<form action="add_city" method="POST" data-courses-url="{% url 'load_states' %}" id="indexForm">
     {% csrf_token %}
     <p onclick="window.location.href='/city'" class="clickable ">City/ New</p>
 
@@ -12,21 +12,40 @@
         <input type="text" name="name" required/><br><br>
 
         <label><b>Country</b></label>
-        <select name="country_id" required>
-            <option disabled="true" selected></option>
+        <select id="country" name="country_id" required>
+            <option disabled="true" selected>---select country---</option>
             {% for country in country_list %}
             <option value={{country.id}}>{{country.name}}</option>
             {% endfor %}
         </select><br><br>
         <label><b>State</b></label>
-        <select name="state_id" required>
-            <option disabled="true" selected></option>
+        <select name="state_id" id="state">
+            <option>---select state---</option>
             {% for state in state_list %}
-            <option value={{state.id}}>{{state.name}}</option>
+            <option value="{{ state.id }}">{{ state.name }}</option>
             {% endfor %}
         </select><br><br>
         <label><b>Zipcode</b></label>
         <input type="text" name="zipcode"/><br><br>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-courses-url");  // get the url of the `load_states` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'country': countryId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_states` view function
+          $("#state").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+</script>
 {% endblock %}

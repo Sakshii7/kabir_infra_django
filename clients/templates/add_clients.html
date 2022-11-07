@@ -1,9 +1,9 @@
 {% extends "add_requisition.html" %}
 {% block content %}
 
-    <form action="add_clients" method="POST">
+    <form action="add_clients" method="POST" data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
         {% csrf_token %}
-        <p><a href="clients" style="color: #000080;">Clients</a> / New</p>
+        <p onclick="window.location.href='/clients'" class="clickable ">Clients/ New</p>
 
         <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
@@ -11,20 +11,36 @@
         <div style="background-color: white; margin: 50px; padding: 10px">
 
             <label style="padding: 10px;"><b>Name</b></label>
-            <input type="text" name="name" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
             <label><b>Street</b></label>
             <input type="text" name="street" /><br><br>
             <label><b>Street2</b></label>
             <input type="text" name="street2" /><br><br>
-            <label><b>City</b></label>
-            <input type="text" name="city" /><br><br>
-            <label><b>State</b></label>
-            <input type="text" name="state" /><br><br>
+            <label><b>Country</b></label>
+        <select id="country" name="country_id">
+            <option style="background-color:white;" disabled="true" selected></option>
+            {% for country in country_list %}
+            <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>State</b></label>
+        <select name="state_id" id="state">
+            <option style="background-color:white;" disabled="true">---select state---</option>
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select name="city_id" id="city">
+            <option style="background-color:white;" disabled="true">---select city---</option>
+        </select><br><br>
+<!--            <input type="text" name="city" /><br><br>-->
+<!--            <label><b>State</b></label>-->
+<!--            <input type="text" name="state" /><br><br>-->
             <label><b>Pincode</b></label>
             <input type="text" name="pincode" /><br><br>
             <label><b>Country</b></label>
-            <input type="text" name="country" /><br><br>
-            <label><b>Phone</b></label>
+<!--            <input type="text" name="country" /><br><br>-->
+<!--            <label><b>Phone</b></label>-->
             <input type="text" name="phone" /><br><br>
             <label><b>Mobile</b></label>
             <input type="text" name="mobile" /><br><br>
@@ -32,5 +48,42 @@
             <input type="text" name="email" /><br><br>
         </div>
     </form>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");
+      var countryId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'country': countryId
+        },
+        success: function (data) {
+          $("#state").html(data);
+        }
+      });
+
+    });
+
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");
+      var stateId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#city").html(data);
+        }
+      });
+    });
+</script>
 {% endblock %}
 

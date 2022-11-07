@@ -1,40 +1,90 @@
 {% extends "add_requisition.html" %}
 {% block content %}
 
-    <form action="add_sites" method="POST">
-        {% csrf_token %}
-        <p><a href="sites" style="color: #000080;">Sites</a> / New</p>
+<form action="add_sites" method="POST"  data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
+    {% csrf_token %}
+    <p onclick="window.location.href='/sites'" class="clickable ">Sites/ New</p>
 
-        <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-        <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
-        <div style="background-color: white; margin: 50px; padding: 10px">
-            <label style="padding: 10px;"><b>Site No.</b></label>
-            <input type="text" name="site_no" required/><br><br>
-            <label><b>Site Description</b></label>
-            <input type="text" name="site_desc" required/><br><br>
-            <label><b>Alias Name</b></label>
-            <input type="text" name="alias_name" required/><br><br>
-            <label><b>Street</b></label>
-            <input type="text" name="street"/><br><br>
-            <label><b>Street2</b></label>
-            <input type="text" name="street2"/><br><br>
-            <label><b>City</b></label>
-            <input type="text" name="city" required/><br><br>
-            <label><b>State</b></label>
-            <input type="text" name="state" required/><br><br>
-            <label><b>Pincode</b></label>
-            <input type="text" name="pincode"/><br><br>
-            <label><b>Country</b></label>
-            <input type="text" name="country" required/><br><br>
-            <label><b>Client</b></label>
-            <select name="client_id">
-                <option disabled="true" selected></option>
-                {% for client in client_list %}
-                <option value={{client.id}}>{{client.name}}</option>
-                 {% endfor %}
-            </select><br><br>
-            <label><b>Company</b></label>
-            <input type="text" name="company" required/><br><br>
-        </div>
-    </form>
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/sites'"/><br><br>
+    <div style="background-color: white; margin: 50px; padding: 10px">
+        <label style="padding: 10px;"><b>Site No.</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="site_no" required/><br><br>
+        <label><b>Site Description</b></label>
+        <input style="background-color:#CCCCFF;"  type="text" name="site_desc" required/><br><br>
+        <label><b>Alias Name</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="alias_name" required/><br><br>
+        <label><b>Street</b></label>
+        <input type="text" name="street"/><br><br>
+        <label><b>Street2</b></label>
+        <input type="text" name="street2"/><br><br>
+
+        <label><b>Country</b></label>
+        <select style="background-color:#CCCCFF;" id="country" name="country_id" required>
+            <option style="background-color:white;" disabled="true" selected></option>
+            {% for country in country_list %}
+            <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>State</b></label>
+        <select style="background-color:#CCCCFF;" name="state_id" id="state" required>
+            <option style="background-color:white;" disabled="true">---select state---</option>
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select style="background-color:#CCCCFF;" name="city_id" id="city" required>
+            <option style="background-color:white;" disabled="true">---select city---</option>
+        </select><br><br>
+
+        <label><b>Pincode</b></label>
+        <input type="text" name="pincode"/><br><br>
+        <!--            <label><b>Country</b></label>-->
+        <!--            <input type="text" name="country" required/><br><br>-->
+        <label><b>Client</b></label>
+        <select style="background-color:#CCCCFF;" name="client_id" required>
+            <option style="background-color:white;" disabled="true" selected></option>
+            {% for client in client_list %}
+            <option style="background-color:white;" value={{client.id}}>{{client.name}}</option>
+            {% endfor %}
+        </select><br><br>
+        <label><b>Company</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="company" required/><br><br>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");  // get the url of the `load_states` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'country': countryId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_states` view function
+          $("#state").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_states` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+    });
+</script>
 {% endblock %}
