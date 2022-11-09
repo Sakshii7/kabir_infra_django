@@ -89,6 +89,7 @@ li a {
             <a href="country">Country</a>
             <a href="states">States</a>
             <a href="city">City</a>
+            <a href="companies">Companies</a>
         </div>
     </li>
 </ul>
@@ -114,7 +115,7 @@ li a {
         <tr class="clickable " onclick="window.location.href='view_material_req/{{ req.id }}'">
             <td>{{ req.name }}</td>
             <td>{{ req.requisition_date }}</td>
-            <td>{{ req.site_id }}</td>
+            <td>{{ req.site }}</td>
             <td>{{ req.user_id }}</td>
         </tr>
         {% endfor %}

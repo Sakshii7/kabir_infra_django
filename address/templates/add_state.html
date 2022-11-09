@@ -9,16 +9,16 @@
         <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/state'"/><br><br>
         <div style="background-color: white; margin: 50px; padding: 10px">
             <label style="padding: 10px;"><b>Name</b></label>
-            <input type="text" name="name" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
             <label><b>Country</b></label>
-            <select name="country_id">
-                <option disabled="true" selected></option>
+            <select style="background-color:#CCCCFF;" name="country_id" required>
+                <option style="background-color:white;" selected>---Select Country---</option>
                 {% for country in country_list %}
-                <option value={{country.id}}>{{country.name}}</option>
+                <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
                  {% endfor %}
             </select><br><br>
             <label><b>Code</b></label>
-            <input type="text" name="code" required/><br><br>
+            <input style="background-color:#CCCCFF;" type="text" name="code" required/><br><br>
         </div>
     </form>
 {% endblock %}

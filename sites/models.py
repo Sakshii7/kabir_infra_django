@@ -20,4 +20,4 @@ class Sites(models.Model):
     company = models.CharField(max_length=20)
 
     def __str__(self):
-        return self.site_no
+        return f'[{self.site_no}] {self.alias_name}'

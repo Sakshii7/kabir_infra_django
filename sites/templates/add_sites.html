@@ -21,7 +21,7 @@
 
         <label><b>Country</b></label>
         <select style="background-color:#CCCCFF;" id="country" name="country_id" required>
-            <option style="background-color:white;" disabled="true" selected></option>
+            <option style="background-color:white;" selected>---Select Country---</option>
             {% for country in country_list %}
             <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
             {% endfor %}
@@ -29,25 +29,25 @@
 
         <label><b>State</b></label>
         <select style="background-color:#CCCCFF;" name="state_id" id="state" required>
-            <option style="background-color:white;" disabled="true">---select state---</option>
+            <option style="background-color:white;">---Select State---</option>
         </select><br><br>
 
         <label><b>City</b></label>
         <select style="background-color:#CCCCFF;" name="city_id" id="city" required>
-            <option style="background-color:white;" disabled="true">---select city---</option>
+            <option style="background-color:white;">---Select City---</option>
         </select><br><br>
 
         <label><b>Pincode</b></label>
         <input type="text" name="pincode"/><br><br>
-        <!--            <label><b>Country</b></label>-->
-        <!--            <input type="text" name="country" required/><br><br>-->
+
         <label><b>Client</b></label>
         <select style="background-color:#CCCCFF;" name="client_id" required>
-            <option style="background-color:white;" disabled="true" selected></option>
+            <option style="background-color:white;"  selected></option>
             {% for client in client_list %}
-            <option style="background-color:white;" value={{client.id}}>{{client.name}}</option>
+            <option style="background-color:white;" value={{client.id}}>{{client}}</option>
             {% endfor %}
         </select><br><br>
+
         <label><b>Company</b></label>
         <input style="background-color:#CCCCFF;" type="text" name="company" required/><br><br>
     </div>

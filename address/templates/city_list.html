@@ -13,7 +13,7 @@
             <th style="background-color: #E7E7E7;">Country</th>
             <th style="background-color: #E7E7E7;">State</th>
             {% for city in city_list %}
-        <tr>
+        <tr class="clickable " onclick="window.location.href='view_city/{{ city.id }}'">
             <td>{{ city.name }}</td>
             <td>{{ city.zipcode }}</td>
             <td>{{ city.country.name }}</td>

@@ -8,22 +8,22 @@
     <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
     <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/city'"/><br><br>
     <div style="background-color: white; margin: 50px; padding: 10px">
+
         <label style="padding: 10px;"><b>Name</b></label>
-        <input type="text" name="name" required/><br><br>
+        <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
 
         <label><b>Country</b></label>
-        <select id="country" name="country_id" required>
-            <option disabled="true" selected>---select country---</option>
+        <select style="background-color:#CCCCFF;" id="country" name="country_id" required>
+            <option style="background-color:white;">---Select Country---</option>
             {% for country in country_list %}
-            <option value={{country.id}}>{{country.name}}</option>
+            <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
             {% endfor %}
         </select><br><br>
+
         <label><b>State</b></label>
-        <select name="state_id" id="state">
-            <option>---select state---</option>
-            {% for state in state_list %}
-            <option value="{{ state.id }}">{{ state.name }}</option>
-            {% endfor %}
+        <select style="background-color:#CCCCFF;" name="state_id" id="state" required>
+            <option style="background-color:white;">---Select State---</option>
+
         </select><br><br>
         <label><b>Zipcode</b></label>
         <input type="text" name="zipcode"/><br><br>

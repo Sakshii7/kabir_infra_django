@@ -1,0 +1,23 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Companies</p>
+<a href="add_company">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Company</th>
+            <th style="background-color: #E7E7E7;">Partner</th>
+
+            {% for company in company_list %}
+        <tr>
+            <td>{{ company.name }}</td>
+            <td>{{ company.name }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

@@ -87,10 +87,6 @@ def view_state(request, state_id):
 
 
 def update_state(request, state_id):
-    country_list = Country.objects.all()
-    context = {
-        'country_list': country_list
-    }
     if request.method == 'POST':
         name = request.POST['name']
         code = request.POST['code']
@@ -101,7 +97,7 @@ def update_state(request, state_id):
         get_state_id.country_id = country_id
         get_state_id.save()
         return redirect('/states')
-    return render(request, 'view_state.html', context)
+    return render(request, 'view_state.html')
 
 
 def city(request):
@@ -133,3 +129,33 @@ def load_states(request):
     country_id = request.GET.get('country')
     state = State.objects.filter(country_id=country_id).order_by('name')
     return render(request, 'states_dropdown.html', {'state_list': state})
+
+
+def view_city(request, city_id):
+    particular_city_id = City.objects.get(id=city_id)
+    country_list = Country.objects.all()
+    get_country_id = City.objects.filter(id=city_id).values_list('country_id', flat=True)
+    state_list = State.objects.filter(country_id=get_country_id[0]).order_by('name')
+    template = loader.get_template('view_city.html')
+    context = {
+        'particular_city_id': particular_city_id,
+        'country_list': country_list,
+        'state_list': state_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+
+def update_city(request, city_id):
+    if request.method == 'POST':
+        name = request.POST['name']
+        zipcode = request.POST['zipcode']
+        country_id = request.POST['country_id']
+        state_id = request.POST['state_id']
+        get_city_id = State.objects.get(id=city_id)
+        get_city_id.name = name
+        get_city_id.code = zipcode
+        get_city_id.country_id = country_id
+        get_city_id.state_id = state_id
+        get_city_id.save()
+        return redirect('/city')
+    return render(request, 'view_city.html')

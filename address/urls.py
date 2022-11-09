@@ -14,4 +14,6 @@ urlpatterns = [
     path('city', views.city, name='City List'),
     path('add_city', views.add_city, name='add_city'),
     path('load_states', views.load_states, name='load_states'),
+    path('view_city/<int:city_id>', views.view_city, name='View City'),
+    path('view_city/update_city/<int:city_id>', views.update_city, name='Update City'),
 ]

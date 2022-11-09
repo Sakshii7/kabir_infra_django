@@ -1,7 +1,7 @@
 {% extends "view_requisition.html" %}
 {% block content %}
 
-<form action="update_sites/{{all_sites.id}}" method="POST">
+<form action="update_sites/{{all_sites.id}}" method="POST" data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
     {% csrf_token %}
     <p onclick="window.location.href='/sites'" class="clickable ">Sites / [{{all_sites.site_no }}]
         {{all_sites.alias_name }}</p>
@@ -21,14 +21,45 @@
         <input type="text" name="street" value="{{all_sites.street}}"/><br><br>
         <label><b>Street2</b></label>
         <input type="text" name="street2" value="{{all_sites.street2}}"/><br><br>
-        <label><b>City</b></label>
-        <input type="text" name="city" value="{{all_sites.city}}" required/><br><br>
+        <label><b>Country</b></label>
+        <select id="country" name="country_id">
+            {% for country in country_list %}
+            {% if all_sites.country_id == country.id %}
+            <option value="{{country.id}}" selected>{{country.name}}</option>
+            {% else %}
+            <option value="{{country.id}}">{{country.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
         <label><b>State</b></label>
-        <input type="text" name="state" value="{{all_sites.state}}" required/><br><br>
+        <select id="state" name="state_id">
+            {% for state in state_list %}
+            {% if all_sites.state_id == state.id %}
+            <option value="{{state.id}}" selected>{{state.name}}</option>
+            {% else %}
+            <option value="{{state.id}}">{{state.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select id="city" name="city_id">
+            {% for city in city_list %}
+            {% if all_sites.city_id == city.id %}
+            <option value="{{city.id}}" selected>{{city.name}}</option>
+            {% else %}
+            <option value="{{city.id}}">{{city.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
         <label><b>Pincode</b></label>
         <input type="text" name="pincode" value="{{all_sites.pincode}}"/><br><br>
+
         <label><b>Country</b></label>
         <input type="text" name="country" value="{{all_sites.country}}" required/><br><br>
+
         <label><b>Client</b></label>
         <select name="client_id">
             {% for client in client_list %}
@@ -43,4 +74,42 @@
         <input type="text" name="company" value="{{all_sites.company}}" required/><br><br>
     </div>
 </form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");
+      var countryId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'country': countryId
+
+        },
+        success: function (data) {
+          $("#state").html(data);
+          $("#city").html("<option>---Select City---</option>");
+        }
+      });
+
+    });
+
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");
+      var stateId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#city").html(data);
+        }
+      });
+    });
+</script>
 {% endblock %}

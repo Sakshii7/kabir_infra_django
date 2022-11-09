@@ -19,6 +19,10 @@ def material_requisition(request):
 
 
 def add_material_requisition(request):
+    site_list = Sites.objects.all()
+    context = {
+        'site_list': site_list
+    }
     if request.method == 'POST':
         name = request.POST['name']
         site_id = request.POST['site_id']
@@ -28,19 +32,25 @@ def add_material_requisition(request):
         material_req = MaterialReq(name=name, site_id=site_id, user_id=user_id, requisition_date=requisition_date)
         material_req.save()
         return redirect('/')
-    return render(request, 'add_requisition.html')
+    return render(request, 'add_requisition.html', context)
 
 
 def view_material_req(request, req_id):
     material_req = MaterialReq.objects.get(id=req_id)
+    site_list = Sites.objects.all()
     template = loader.get_template('view_requisition.html')
     context = {
         'material_req': material_req,
+        'site_list': site_list
     }
     return HttpResponse(template.render(context, request))
 
 
 def update_material_req(request, req_id):
+    site_list = Sites.objects.all()
+    context = {
+        'site_list': site_list
+    }
     if request.method == 'POST':
         name = request.POST['name']
         site_id = request.POST['site_id']
@@ -51,7 +61,7 @@ def update_material_req(request, req_id):
         requisition_id.user_id = user_id
         requisition_id.save()
         return redirect('/')
-    return render(request, 'add_requisition.html')
+    return render(request, 'add_requisition.html', context)
 
 # def pdf_view(request):
 #     response = HttpResponse(content_type='application/pdf')

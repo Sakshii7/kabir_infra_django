@@ -1,0 +1,109 @@
+{% extends "add_requisition.html" %}
+{% block content %}
+<form action="add_company" method="POST" data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
+    {% csrf_token %}
+    <p onclick="window.location.href='/companies'" class="clickable ">Companies/ New</p>
+
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/companies'"/><br><br>
+    <div style="background-color: white; margin: 50px; padding: 10px">
+
+        <label><b>Company Name</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
+
+
+        <label><b>Street</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="street" required/><br><br>
+
+        <label><b>Street2</b></label>
+        <input type="text" name="street2"/><br><br>
+
+        <label><b>Country</b></label>
+        <select style="background-color:#CCCCFF;" id="country" name="country_id" required>
+            <option style="background-color:white;" selected>---Select Country---</option>
+            {% for country in country_list %}
+            <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>State</b></label>
+        <select style="background-color:#CCCCFF;" name="state_id" id="state" required>
+            <option style="background-color:white;" >---Select State---</option>
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select style="background-color:#CCCCFF;" name="city_id" id="city" required>
+            <option style="background-color:white;" >---Select City---</option>
+        </select><br><br>
+
+        <label><b>Pincode</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="pincode" required/><br><br>
+
+        <label><b>Phone</b></label>
+        <input type="text" name="phone"/><br><br>
+
+        <label><b>Mobile</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="mobile" required/><br><br>
+
+        <label><b>Email</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="email" required/><br><br>
+
+        <label><b>GSTIN</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="gstin" required/><br><br>
+
+        <label><b>PAN</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="pan_no" required/><br><br>
+
+        <label><b>CIN</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="cin_no" required/><br><br>
+
+        <label><b>Company Registry</b></label>
+        <input type="text" name="company_registry"/><br><br>
+
+
+        <label><b>Currency</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="currency" required/><br><br>
+
+
+        <label><b>Owner Name</b></label>
+        <input type="text" name="owner_name"/><br><br>
+
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");  // get the url of the `load_states` view
+      var countryId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'country': countryId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_states` view function
+          $("#state").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+
+    });
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");  // get the url of the `load_states` view
+      var stateId = $(this).val();  // get the selected country ID from the HTML input
+
+      $.ajax({                       // initialize an AJAX request
+        url: url,                    // set the url of the request (= localhost:8000/load_states/)
+        data: {
+          'state': stateId       // add the programming id to the GET parameters
+        },
+        success: function (data) {   // `data` is the return of the `load_cities` view function
+          $("#city").html(data);  // replace the contents of the course input with the data that came from the server
+        }
+      });
+    });
+</script>
+{% endblock %}
+

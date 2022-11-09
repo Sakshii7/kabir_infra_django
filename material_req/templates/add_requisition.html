@@ -70,6 +70,7 @@ li a {
 
 
 
+
 </style>
 <body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
 <div style="background-color: white">
@@ -92,6 +93,8 @@ li a {
                 <a href="sites">Sites</a>
                 <a href="country">Country</a>
                 <a href="states">States</a>
+                <a href="city">City</a>
+                <a href="companies">Companies</a>
             </div>
         </li>
     </ul>
@@ -104,11 +107,20 @@ li a {
 
         <div style="background-color: white; margin: 50px; padding: 10px">
 
-
             <label><b>RQN Reference</b></label>
             <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
-            <label style="padding: 10px;"><b>Site</b></label>
-            <input style="background-color:#CCCCFF;" type="text" name="site_id" required/><br><br>
+
+            <!--            <label style="padding: 10px;"><b>Site</b></label>-->
+            <!--            <input style="background-color:#CCCCFF;" type="text" name="site_id" required/><br><br>-->
+
+            <label><b>Site</b></label>
+            <select style="background-color:#CCCCFF;" name="site_id" required>
+                <option style="background-color:white;" selected></option>
+                {% for site in site_list %}
+                <option style="background-color:white;" value={{site.id}}>{{site}}</option>
+                {% endfor %}
+            </select><br><br>
+
             <label><b>Supervisior</b></label>
             <input style="background-color:#CCCCFF;" type="text" name="user_id" required/><br><br>
         </div>

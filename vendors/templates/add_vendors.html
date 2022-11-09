@@ -5,7 +5,7 @@
     <p onclick="window.location.href='/vendors'" class="clickable ">Vendors/ New</p>
 
     <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
-    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/'"/><br><br>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/vendors'"/><br><br>
     <div style="background-color: white; margin: 50px; padding: 10px">
 
         <label><b>Vendor Code</b></label>
@@ -24,25 +24,22 @@
         <input type="text" name="street2"/><br><br>
 
         <label><b>Country</b></label>
-        <select style="background-color:#CCCCFF;" id="country" name="country_id">
-            <option style="background-color:white;" disabled="true" selected></option>
+        <select style="background-color:#CCCCFF;" id="country" name="country_id" required>
+            <option style="background-color:white;" selected>---Select Country---</option>
             {% for country in country_list %}
             <option style="background-color:white;" value={{country.id}}>{{country.name}}</option>
             {% endfor %}
         </select><br><br>
 
         <label><b>State</b></label>
-        <select style="background-color:#CCCCFF;" name="state_id" id="state">
-            <option style="background-color:white;" disabled="true">---select state---</option>
+        <select style="background-color:#CCCCFF;" name="state_id" id="state" required>
+            <option style="background-color:white;" >---Select State---</option>
         </select><br><br>
 
         <label><b>City</b></label>
-        <select style="background-color:#CCCCFF;" name="city_id" id="city">
-            <option style="background-color:white;" disabled="true">---select city---</option>
+        <select style="background-color:#CCCCFF;" name="city_id" id="city" required>
+            <option style="background-color:white;" >---Select City---</option>
         </select><br><br>
-
-<!--        <label><b>City</b></label>-->
-<!--        <input style="background-color:#CCCCFF;" type="text" name="city" required/><br><br>-->
 
         <label><b>Pincode</b></label>
         <input style="background-color:#CCCCFF;" type="text" name="pincode" required/><br><br>
@@ -70,6 +67,7 @@
 
         <label><b>Credit Days</b></label>
         <input style="background-color:#CCCCFF;" type="text" name="credit_days" required/><br><br>
+
 
         <label><b>Credit Amount</b></label>
         <input type="text" name="credit_amount"/><br><br>

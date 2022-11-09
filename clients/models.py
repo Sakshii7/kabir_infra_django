@@ -23,3 +23,5 @@ class Clients(models.Model):
 
     class Meta:
         ordering = ['name']
+
+# f'[{self.name}] {self.pincode}'

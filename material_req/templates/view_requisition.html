@@ -63,6 +63,8 @@ li a {
 .dropdown:hover .dropbtn {background-color: #00008B;}
 
 
+
+
 </style>
 <body style="font-family: Arial, sans-serif; background-color: #E7E7E7">
 <div style="background-color: white">
@@ -71,18 +73,19 @@ li a {
             Site Management</h3></a></li>
         <li><a href="/">Construction Site Management</a></li>
         <li><a href="/">Reporting</a></li>
-            <li class="dropdown">
-        <button class="dropbtn">Configuration</button>
-        <div class="dropdown-content">
-             <a href="/clients">Clients</a>
-            <a href="/materials">Materials</a>
-            <a href="/vendors">Vendors</a>
-            <a href="/sites">Sites</a>
-            <a href="/country">Country</a>
-            <a href="/states">States</a>
-            <a href="/city">City</a>
-        </div>
-    </li>
+        <li class="dropdown">
+            <button class="dropbtn">Configuration</button>
+            <div class="dropdown-content">
+                <a href="/clients">Clients</a>
+                <a href="/materials">Materials</a>
+                <a href="/vendors">Vendors</a>
+                <a href="/sites">Sites</a>
+                <a href="/country">Country</a>
+                <a href="/states">States</a>
+                <a href="/city">City</a>
+                <a href="/companies">Companies</a>
+            </div>
+        </li>
     </ul>
     {% block content %}
     <form action="update_record/{{material_req.id}}" method="POST">
@@ -94,8 +97,21 @@ li a {
         <div style="background-color: white; margin: 50px; padding: 10px">
             <label><b>RQN Reference</b></label>
             <input type="text" name="name" value="{{material_req.name}}"/><br><br>
-            <label style="padding: 10px;"><b>Site</b></label>
-            <input type="text" name="site_id" value="{{material_req.site_id}}"/><br><br>
+
+            <!--            <label style="padding: 10px;"><b>Site</b></label>-->
+            <!--            <input type="text" name="site_id" value="{{material_req.site}}"/><br><br>-->
+
+            <label><b>Site</b></label>
+            <select name="site_id">
+                {% for site in site_list %}
+                {% if material_req.site_id == site.id %}
+                <option value="{{site.id}}" selected>{{site}}</option>
+                {% else %}
+                <option value="{{site.id}}">{{site}}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br><br>
+
             <label><b>Supervisior</b></label>
             <input type="text" name="user_id" value="{{material_req.user_id}}"/><br><br>
         </div>

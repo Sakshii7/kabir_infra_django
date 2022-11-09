@@ -1,0 +1,131 @@
+{% extends "view_requisition.html" %}
+{% block content %}
+
+<form action="update_vendor/{{particular_vendor_id.id}}" method="POST" data-city-url="{% url 'load_city' %}" data-state-url="{% url 'load_states' %}" id="indexForm">
+    {% csrf_token %}
+    <p onclick="window.location.href='/vendors'" class="clickable ">Vendors / [{{particular_vendor_id.vendor_code }}] {{particular_vendor_id.vendor_name }}</p>
+
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/vendors'"/><br><br>
+
+    <div style="background-color: white; margin: 50px; padding: 10px">
+
+        <label><b>Vendor Code</b></label>
+        <input type="text" name="vendor_code" value="{{particular_vendor_id.vendor_code}}" required/><br><br>
+
+        <label><b>Trade Name</b></label>
+        <input type="text" name="trade_name" value="{{particular_vendor_id.trade_name}}" required/><br><br>
+
+        <label><b>Vendor Name</b></label>
+        <input  type="text" name="vendor_name" value="{{particular_vendor_id.vendor_name}}" required/><br><br>
+
+        <label><b>Street</b></label>
+        <input type="text" name="street" value="{{particular_vendor_id.street}}"/><br><br>
+
+        <label><b>Street2</b></label>
+        <input type="text" name="street2" value="{{particular_vendor_id.street2}}"/><br><br>
+
+        <label><b>Country</b></label>
+        <select id="country" name="country_id">
+            {% for country in country_list %}
+            {% if particular_vendor_id.country_id == country.id %}
+            <option value="{{country.id}}" selected>{{country.name}}</option>
+            {% else %}
+            <option value="{{country.id}}">{{country.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>State</b></label>
+        <select id="state" name="state_id">
+            {% for state in state_list %}
+            {% if particular_vendor_id.state_id == state.id %}
+            <option value="{{state.id}}" selected>{{state.name}}</option>
+            {% else %}
+            <option value="{{state.id}}">{{state.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>City</b></label>
+        <select id="city" name="city_id">
+            {% for city in city_list %}
+            {% if particular_vendor_id.city_id == city.id %}
+            <option value="{{city.id}}" selected>{{city.name}}</option>
+            {% else %}
+            <option value="{{city.id}}">{{city.name}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br><br>
+
+        <label><b>Pincode</b></label>
+        <input type="text" name="pincode" value="{{particular_vendor_id.pincode}}" /><br><br>
+
+        <label><b>Phone</b></label>
+        <input type="text" name="phone" value="{{particular_vendor_id.phone}}" /><br><br>
+
+        <label><b>Mobile</b></label>
+        <input type="text" name="mobile" value="{{particular_vendor_id.mobile}}"/><br><br>
+
+        <label><b>Email</b></label>
+        <input type="text" name="email" value="{{particular_vendor_id.email}}" /><br><br>
+
+        <label><b>Vendor Type</b></label>
+        <input type="text" name="vendor_type" value="{{particular_vendor_id.vendor_type}}"/><br><br>
+
+        <label><b>Contact Person</b></label>
+        <input type="text" name="contact_person" value="{{particular_vendor_id.contact_person}}" /><br><br>
+
+        <label><b>GSTIN</b></label>
+        <input type="text" name="gstin" value="{{particular_vendor_id.gstin}}"/><br><br>
+
+        <label><b>PAN</b></label>
+        <input type="text" name="pan_no" value="{{particular_vendor_id.pan_no}}"/><br><br>
+
+        <label><b>Credit Days</b></label>
+        <input value="{{particular_vendor_id.credit_days}}" type="text" name="credit_days" /><br><br>
+
+        <label><b>Credit Amount</b></label>
+        <input type="text" name="credit_amount" value="{{particular_vendor_id.credit_amount}}"/><br><br>
+
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#country").change(function ()
+     {
+      var url = $("#indexForm").attr("data-state-url");
+      var countryId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'country': countryId
+
+        },
+        success: function (data) {
+          $("#state").html(data);
+          $("#city").html("<option>---Select City---</option>");
+        }
+      });
+
+    });
+
+
+      $("#state").change(function ()
+     {
+      var url = $("#indexForm").attr("data-city-url");
+      var stateId = $(this).val();
+
+      $.ajax({
+        url: url,
+        data: {
+          'state': stateId
+        },
+        success: function (data) {
+          $("#city").html(data);
+        }
+      });
+    });
+</script>
+{% endblock %}
