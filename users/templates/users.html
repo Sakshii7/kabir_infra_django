@@ -1,0 +1,22 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Users</p>
+<a href="add_user">
+    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>
+</a><br><br>
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Name</th>
+            <th style="background-color: #E7E7E7;">Login</th>
+
+            {% for supervisior in user_list %}
+        <tr  class="clickable " onclick="window.location.href='view_user/{{ supervisior.id }}'">
+            <td>{{ supervisior.name }}</td>
+            <td>{{ supervisior.email }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

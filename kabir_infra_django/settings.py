@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'sites.apps.SitesConfig',
     'address.apps.AddressConfig',
     'companies.apps.CompaniesConfig',
+    'users.apps.UsersConfig'
 ]
 
 MIDDLEWARE = [

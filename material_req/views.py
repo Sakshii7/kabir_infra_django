@@ -20,8 +20,10 @@ def material_requisition(request):
 
 def add_material_requisition(request):
     site_list = Sites.objects.all()
+    user_list = Users.objects.filter(is_supervisior=True).order_by('name')
     context = {
-        'site_list': site_list
+        'site_list': site_list,
+        'user_list': user_list
     }
     if request.method == 'POST':
         name = request.POST['name']
@@ -38,18 +40,22 @@ def add_material_requisition(request):
 def view_material_req(request, req_id):
     material_req = MaterialReq.objects.get(id=req_id)
     site_list = Sites.objects.all()
+    user_list = Users.objects.filter(is_supervisior=True).order_by('name')
     template = loader.get_template('view_requisition.html')
     context = {
         'material_req': material_req,
-        'site_list': site_list
+        'site_list': site_list,
+        'user_list': user_list
     }
     return HttpResponse(template.render(context, request))
 
 
 def update_material_req(request, req_id):
     site_list = Sites.objects.all()
+    user_list = Users.objects.filter(is_supervisior=True).order_by('name')
     context = {
-        'site_list': site_list
+        'site_list': site_list,
+        'user_list': user_list
     }
     if request.method == 'POST':
         name = request.POST['name']

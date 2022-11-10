@@ -1,0 +1,22 @@
+{% extends "requisition.html" %}
+{% block content %}
+<p>Supervisior</p>
+<!--<a href="add_user">-->
+<!--    <button style="background-color: #00008B; color: white; padding: 7px;">Create</button>-->
+<!--</a><br><br>-->
+
+<div>
+    <table style="width:100%;">
+        <tr>
+            <th style="background-color: #E7E7E7;">Name</th>
+            <th style="background-color: #E7E7E7;">Employee Code</th>
+
+            {% for x in supervisior_list %}
+        <tr>
+            <td>{{ x.name }}</td>
+            <td>{{ x.employee_code }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}

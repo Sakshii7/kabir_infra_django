@@ -84,6 +84,7 @@ li a {
                 <a href="/states">States</a>
                 <a href="/city">City</a>
                 <a href="/companies">Companies</a>
+                 <a href="users">Users</a>
             </div>
         </li>
     </ul>
@@ -113,7 +114,19 @@ li a {
             </select><br><br>
 
             <label><b>Supervisior</b></label>
-            <input type="text" name="user_id" value="{{material_req.user_id}}"/><br><br>
+            <select name="user_id">
+                {% for user in user_list %}
+                {% if material_req.user_id == user.id %}
+                <option value="{{user.id}}" selected>{{user}}</option>
+                {% else %}
+                <option value="{{user.id}}">{{user}}</option>
+                {% endif %}
+                {% endfor %}
+            </select><br><br>
+
+
+<!--            <label><b>Supervisior</b></label>-->
+<!--            <input type="text" name="user_id" value="{{material_req.user_id}}"/><br><br>-->
         </div>
     </form>
 </div>

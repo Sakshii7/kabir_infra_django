@@ -1,0 +1,36 @@
+{% extends "add_requisition.html" %}
+{% block content %}
+<form action="add_user" method="POST">
+    {% csrf_token %}
+    <p onclick="window.location.href='/users'" class="clickable ">User/ New</p>
+
+    <input type="submit" value="Save" style="background-color: 00008B; color: white; padding: 5px;"/>
+    <input type="reset" value="Discard" style="padding: 5px;" onclick="window.location.href='/users'"/><br><br>
+    <div style="background-color: white; margin: 50px; padding: 10px">
+
+        <label><b>Name</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="name" required/><br><br>
+
+        <label><b>Login</b></label>
+        <input style="background-color:#CCCCFF;" type="text" name="email" required/><br><br>
+
+        <label class="col-md-5" for="is_supervisior"> Supervisior </label>
+        <input id="is_supervisior" type="checkbox" name="is_supervisior" /><br><br>
+
+        <label class="col-md-5" for="is_accounts"> Accounts </label>
+        <input id="is_accounts" type="checkbox" name="is_accounts" /><br><br>
+
+        <label class="col-md-5" for="is_purchase"> Purchase </label>
+        <input id="is_purchase" type="checkbox" name="is_purchase" /><br><br>
+
+        <label class="col-md-5" for="is_administrator"> Administrator </label>
+        <input id="is_administrator" type="checkbox" name="is_administrator" /><br><br>
+
+        <label class="col-md-5" for="is_add_sites_and_vendors"> Add Sites and Vendors </label>
+        <input id="is_add_sites_and_vendors" type="checkbox" name="is_add_sites_and_vendors" /><br><br>
+
+    </div>
+</form>
+
+{% endblock %}
+

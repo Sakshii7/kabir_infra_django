@@ -95,6 +95,7 @@ li a {
                 <a href="states">States</a>
                 <a href="city">City</a>
                 <a href="companies">Companies</a>
+                 <a href="users">Users</a>
             </div>
         </li>
     </ul>
@@ -121,8 +122,16 @@ li a {
                 {% endfor %}
             </select><br><br>
 
-            <label><b>Supervisior</b></label>
-            <input style="background-color:#CCCCFF;" type="text" name="user_id" required/><br><br>
+           <label><b>Supervisior</b></label>
+            <select style="background-color:#CCCCFF;" name="user_id" required>
+                <option style="background-color:white;" selected></option>
+                {% for user in user_list %}
+                <option style="background-color:white;" value={{user.id}}>{{user}}</option>
+                {% endfor %}
+            </select><br><br>
+
+<!--            <label><b>Supervisior</b></label>-->
+<!--            <input style="background-color:#CCCCFF;" type="text" name="user_id" required/><br><br>-->
         </div>
     </form>
 </div>

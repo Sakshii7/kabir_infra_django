@@ -90,6 +90,8 @@ li a {
             <a href="states">States</a>
             <a href="city">City</a>
             <a href="companies">Companies</a>
+            <a href="users">Users</a>
+<!--            <a href="supervisiors">Supervisior</a>-->
         </div>
     </li>
 </ul>
@@ -116,7 +118,7 @@ li a {
             <td>{{ req.name }}</td>
             <td>{{ req.requisition_date }}</td>
             <td>{{ req.site }}</td>
-            <td>{{ req.user_id }}</td>
+            <td>{{ req.user }}</td>
         </tr>
         {% endfor %}
         </tbody>
